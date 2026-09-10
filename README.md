@@ -11,7 +11,9 @@ package it with Docker, and deploy it to AWS.
 - Verified HTTP responses with a browser and curl.
 - Added a health endpoint and handling for unknown paths.
 
-AWS deployment is the next stage and is not completed yet.
+Successfully deployed to Amazon ECS on AWS Fargate, verified all
+application routes, and confirmed application logs in CloudWatch.
+The demo task was stopped after testing to control costs.
 
 ## Routes
 
@@ -65,8 +67,31 @@ Built as a guided learning project with AI assistance.
 Uses Python's built-in HTTP server for demonstration, not
 as a production-ready web server.
 
-## Next steps
+## AWS deployment completed
 
-- Push the image to Amazon ECR.
-- Deploy the container using Amazon ECS on Fargate.
-- Document deployment, verification, costs, and cleanup. 
+- Pushed the Docker image to a private Amazon ECR repository.
+- Created an Amazon ECS cluster.
+- Configured an IAM task execution role for image pulls and logging.
+- Deployed one ARM64 Fargate task with 0.25 vCPU and 512 MiB of memory.
+- Used a public subnet and restricted inbound TCP port 8000 to my public IP.
+- Sent application logs to CloudWatch with a seven-day retention period.
+- Verified `/` and `/health` returned HTTP 200.
+- Verified `/missing` returned HTTP 404.
+- Stopped the task after testing and confirmed its status was STOPPED.
+
+## Deployment status
+
+This is a completed learning deployment, currently stopped.
+The application is not continuously hosted.
+
+The ECR image and CloudWatch logs remain stored and may incur
+small storage charges.
+
+## What I learned on AWS
+
+ECR stores container images. ECS manages tasks, and Fargate provides
+the compute to run them. The task definition specifies the image,
+CPU, memory, architecture, execution role, and logging configuration.
+
+Security groups control network access. CloudWatch logs helped me
+verify that the deployed application handled requests correctly.
