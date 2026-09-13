@@ -60,6 +60,14 @@ with `--rm`. The image remains available locally.
 An image packages the application and its runtime.
 A container runs that image. After changing the source code,
 I rebuilt the image and replaced the container to apply the update.
+## Troubleshooting lab
+
+I deliberately introduced startup, port-mapping, and health-check
+failures into the container. I used Docker status, logs, port
+inspection, HTTP responses, and health history to diagnose and fix
+each problem.
+
+[Read the troubleshooting walkthrough](TROUBLESHOOTING.md)
 
 ## Scope and attribution
 
